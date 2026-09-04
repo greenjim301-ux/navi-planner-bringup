@@ -1,0 +1,23 @@
+<launch>
+  <!-- Real-robot bringup: hand-lio (Livox Mid-360 relocalization odom + point cloud)
+       + SCAN-Planner (planning/control) + unitree_bridge (cmd_vel -> Go2 SDK).
+       Hard-coded for the real robot: is_real_world is not exposed as an arg here,
+       use src/SCAN-Planner/.../launch/run.launch directly for simulation. -->
+
+  <arg name="navi_mode" default="2"/>       <!-- 1: rviz 2D Nav Goal, 2: waypoints, 3: reference path -->
+  <arg name="sensor_type" default="lidar"/>
+  <arg name="controller_mode" default="closed_loop"/>
+  <arg name="use_pcd_map" default="false"/> <!-- optional prior map, rviz-only, not consumed by the planner -->
+  <arg name="pcd_map_file" default="$(find map_generator)/resource/building.pcd"/>
+
+  <include file="$(find unitree_bridge)/launch/unitree_bridge.launch"/>
+
+  <include file="$(find scan_planner)/launch/run.launch">
+    <arg name="is_real_world" value="true"/>
+    <arg name="navi_mode" value="$(arg navi_mode)"/>
+    <arg name="sensor_type" value="$(arg sensor_type)"/>
+    <arg name="controller_mode" value="$(arg controller_mode)"/>
+    <arg name="use_pcd_map" value="$(arg use_pcd_map)"/>
+    <arg name="pcd_map_file" value="$(arg pcd_map_file)"/>
+  </include>
+</launch>

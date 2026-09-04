@@ -1,0 +1,33 @@
+[Unit]
+Description=Robot bringup: hand-lio + SCAN-Planner + unitree_bridge
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=cat
+WorkingDirectory=/home/cat/ros1_ws
+ExecStart=/home/cat/ros1_ws/scripts/ros_bringup.sh
+
+# Override launch args here instead of editing scripts/ros_bringup.sh.
+Environment=NAVI_MODE=2
+Environment=CONTROLLER_MODE=closed_loop
+Environment=SENSOR_TYPE=lidar
+
+# roslaunch treats SIGINT like Ctrl-C and shuts its nodes down cleanly;
+# plain SIGTERM does not always propagate the same way to child nodes.
+KillSignal=SIGINT
+TimeoutStopSec=20
+
+# Let systemd-coredump capture a core on crash (e.g. scan_planner_node dying to
+# an uncaught boost::lock_error) so `coredumpctl gdb <exe>` can get a backtrace
+# after the fact, instead of only the crash message in the journal.
+LimitCORE=infinity
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
