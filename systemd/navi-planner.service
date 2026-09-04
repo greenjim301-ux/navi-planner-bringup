@@ -1,5 +1,5 @@
 [Unit]
-Description=Robot bringup: hand-lio + SCAN-Planner + unitree_bridge
+Description=Robot bringup: SCAN-Planner + unitree_bridge (hand-lio started separately)
 After=network-online.target
 Wants=network-online.target
 StartLimitIntervalSec=60
@@ -9,9 +9,9 @@ StartLimitBurst=3
 Type=simple
 User=cat
 WorkingDirectory=/home/cat/ros1_ws
-ExecStart=/home/cat/ros1_ws/scripts/ros_bringup.sh
+ExecStart=/home/cat/ros1_ws/scripts/navi_planner.sh
 
-# Override launch args here instead of editing scripts/ros_bringup.sh.
+# Override launch args here instead of editing scripts/navi_planner.sh.
 Environment=NAVI_MODE=2
 Environment=CONTROLLER_MODE=closed_loop
 Environment=SENSOR_TYPE=lidar

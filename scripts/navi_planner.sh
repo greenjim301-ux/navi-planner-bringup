@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Brings up hand-lio + SCAN-Planner + unitree_bridge together (launch/bringup.launch).
+# Brings up SCAN-Planner + unitree_bridge together (launch/navi_planner.launch).
+# hand-lio is started separately, not by this script.
 # Meant to be run by systemd/navi-planner.service, not sourced or run interactively.
 set -e
 
@@ -16,7 +17,7 @@ source "$WS/devel/setup.bash"
 # navi_mode: 1 rviz 2D Nav Goal, 2 waypoints, 3 reference path.
 # Override any of these from the systemd unit with Environment=NAVI_MODE=3 etc.,
 # rather than editing this script.
-exec roslaunch "$WS/launch/bringup.launch" \
+exec roslaunch "$WS/launch/navi_planner.launch" \
   navi_mode:="${NAVI_MODE:-1}" \
   sensor_type:="${SENSOR_TYPE:-lidar}" \
   controller_mode:="${CONTROLLER_MODE:-closed_loop}"

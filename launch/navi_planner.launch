@@ -1,6 +1,6 @@
 <launch>
-  <!-- Real-robot bringup: hand-lio (Livox Mid-360 relocalization odom + point cloud)
-       + SCAN-Planner (planning/control) + unitree_bridge (cmd_vel -> Go2 SDK).
+  <!-- Real-robot bringup: SCAN-Planner (planning/control) + unitree_bridge (cmd_vel -> Go2 SDK).
+       hand-lio is started separately, not by this launch file.
        Hard-coded for the real robot: is_real_world is not exposed as an arg here,
        use src/SCAN-Planner/.../launch/run.launch directly for simulation. -->
 
