@@ -1,6 +1,6 @@
 <launch>
-  <!-- Real-robot bringup: SCAN-Planner (planning/control) + unitree_bridge (cmd_vel -> Go2 SDK).
-       hand-lio is started separately, not by this launch file.
+  <!-- Real-robot bringup: SCAN-Planner (planning/control).
+       hand-lio and unitree_bridge are started separately, not by this launch file.
        Hard-coded for the real robot: is_real_world is not exposed as an arg here,
        use src/SCAN-Planner/.../launch/run.launch directly for simulation. -->
 
@@ -9,8 +9,6 @@
   <arg name="controller_mode" default="closed_loop"/>
   <arg name="use_pcd_map" default="false"/> <!-- optional prior map, rviz-only, not consumed by the planner -->
   <arg name="pcd_map_file" default="$(find map_generator)/resource/building.pcd"/>
-
-  <include file="$(find unitree_bridge)/launch/unitree_bridge.launch"/>
 
   <include file="$(find scan_planner)/launch/run.launch">
     <arg name="is_real_world" value="true"/>

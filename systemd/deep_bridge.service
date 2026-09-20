@@ -1,0 +1,27 @@
+[Unit]
+Description=deep_bridge: cmd_vel -> Deep Robotics Lynx M20 UDP/JSON protocol
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=cat
+WorkingDirectory=/home/cat/ros1_ws
+ExecStart=/home/cat/ros1_ws/scripts/deep_bridge.sh
+
+# roslaunch treats SIGINT like Ctrl-C and shuts its nodes down cleanly;
+# plain SIGTERM does not always propagate the same way to child nodes.
+KillSignal=SIGINT
+TimeoutStopSec=20
+
+# Let systemd-coredump capture a core on crash so `coredumpctl gdb <exe>` can
+# get a backtrace after the fact, instead of only the crash message in the journal.
+LimitCORE=infinity
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

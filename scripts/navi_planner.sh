@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Brings up SCAN-Planner + unitree_bridge together (launch/navi_planner.launch).
-# hand-lio is started separately, not by this script.
+# Brings up SCAN-Planner (launch/navi_planner.launch).
+# hand-lio and unitree_bridge are started separately, not by this script.
 # Meant to be run by systemd/navi_planner.service, not sourced or run interactively.
 set -e
 

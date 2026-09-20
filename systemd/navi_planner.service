@@ -1,5 +1,5 @@
 [Unit]
-Description=Robot bringup: SCAN-Planner + unitree_bridge (hand-lio started separately)
+Description=Robot bringup: SCAN-Planner (hand-lio, unitree_bridge started separately)
 After=network-online.target
 Wants=network-online.target
 StartLimitIntervalSec=60
