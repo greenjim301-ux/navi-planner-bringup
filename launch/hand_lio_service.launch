@@ -1,0 +1,5 @@
+<launch>
+  <!-- Keep hand-lio and its shadow pose fusion node under one roslaunch process. -->
+  <include file="$(find hand_lio)/launch/hand_lio.launch"/>
+  <include file="$(find hand_lio)/launch/pose_fusion_shadow.launch"/>
+</launch>

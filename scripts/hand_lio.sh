@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Brings up hand-lio (launch/hand_lio.launch in the hand-lio package).
+# Brings up hand-lio and pose_fusion_shadow_node (launch/hand_lio_service.launch).
 # Meant to be run by systemd/hand_lio.service, not sourced or run interactively.
 set -e
 
@@ -13,4 +13,4 @@ source /home/cat/HandBot_bash/rosmaster.bash
 
 source "$WS/devel/setup.bash"
 
-exec roslaunch hand_lio hand_lio.launch
+exec roslaunch "$WS/launch/hand_lio_service.launch"
