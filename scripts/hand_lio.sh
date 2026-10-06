@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Brings up hand-lio and pose_fusion_shadow_node (launch/hand_lio_service.launch).
+# Brings up hand-lio (launch/hand_lio_service.launch).
 # Meant to be run by systemd/hand_lio.service, not sourced or run interactively.
 set -e
 

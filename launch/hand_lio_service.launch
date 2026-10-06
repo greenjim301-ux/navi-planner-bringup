@@ -1,5 +1,9 @@
 <launch>
-  <!-- Keep hand-lio and its shadow pose fusion node under one roslaunch process. -->
+  <!-- hand-lio only. pose_fusion_shadow_node is no longer started: with hand_lio's
+       pose_source=fused, hand_lio_node itself publishes the fused pose and
+       /hand_lio/pose_fusion_diag, and running the shadow node too would publish a
+       second, interleaved stream on that same diag topic. To compare against the
+       shadow output again (pose_source=stream), add back:
+       <include file="$(find hand_lio)/launch/pose_fusion_shadow.launch"/> -->
   <include file="$(find hand_lio)/launch/hand_lio.launch"/>
-  <include file="$(find hand_lio)/launch/pose_fusion_shadow.launch"/>
 </launch>

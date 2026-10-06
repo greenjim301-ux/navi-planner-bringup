@@ -1,5 +1,5 @@
 [Unit]
-Description=hand-lio: Livox Mid-360 odom, point cloud, and shadow pose fusion
+Description=hand-lio: Livox Mid-360 odom and point cloud
 After=network-online.target
 Wants=network-online.target
 StartLimitIntervalSec=60
